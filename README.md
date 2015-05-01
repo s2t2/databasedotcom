@@ -215,6 +215,22 @@ contact.delete                                      #=> delete the contact from 
 
 See the [documentation](http://rubydoc.info/github/heroku/databasedotcom/master/frames) for full details.
 
+### Pagination
+
+After your class is materialized, calls to `#all` will return a maximum of 1000 records. To page through more records, try the following code.
+
+```` rb
+contacts = Contact.all
+while contact.any? do
+  contacts.each do |contact|
+    # DO SOMETHING CRAZY
+  end
+  contacts = (contacts.next_page? ? contacts.next_page : []) # if there is no next page, set the variable to an empty array to stop the while loop
+end
+````
+
+Consult the [Collection documentation](http://www.rubydoc.info/github/heroku/databasedotcom/master/Databasedotcom/Collection) for more info.
+
 ## Accessing the Chatter API
 
 You can easily access Chatter feeds, group, conversations, etc.:
