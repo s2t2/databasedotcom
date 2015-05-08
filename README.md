@@ -203,6 +203,8 @@ contact = Contact.find("contact_id")                #=> #<Contact @Id="contact_i
 contact = Contact.find_by_Name("John Smith")        #=> dynamic finders!
 contacts = Contact.all                              #=> a Databasedotcom::Collection of Contact instances
 contacts = Contact.find_all_by_Company("IBM")       #=> a Databasedotcom::Collection of matching Contacts
+contacts = Contact.query("SystemModstamp >= #{(DateTime.now - 100.days).strftime("%Y-%m-%dT%H:%M:%S%Z")}")
+                                                    #=> a Databasedotcom::Collection of matching Contacts
 contact.Name                                        #=> the contact's Name attribute
 contact["Name"]                                     #=> same thing
 contact.Name = "new name"                           #=> change the contact's Name attribute, in memory
